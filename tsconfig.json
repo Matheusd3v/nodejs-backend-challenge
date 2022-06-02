@@ -9,7 +9,6 @@
     "sourceMap": true,
     "outDir": "./dist",         
     "esModuleInterop": true,
-    "strict": true,
-    "strictPropertyInitialization": true,
+    "strict": false
   }
 }
