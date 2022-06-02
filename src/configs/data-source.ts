@@ -17,6 +17,6 @@ export const AppDataSource = new DataSource({
     // entities: ,
 });
 
-AppDataSource.initialize()
-    .then(() => console.log("Connected"))
-    .catch((err) => console.log("Don't connect!!", err));
+// AppDataSource.initialize()
+//     .then(() => console.log("Connected"))
+//     .catch((err) => console.log("Don't connect!!", err));
