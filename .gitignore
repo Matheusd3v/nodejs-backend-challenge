@@ -1,0 +1,11 @@
+node_modules
+.vscode/
+.idea/
+.env
+tmp/
+temp/
+*.lock
+*.log
+*.sqlite
+
+
