@@ -1,0 +1,8 @@
+{
+  "name": "nodejs-backend-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Matheusd3v/nodejs-backend-challenge.git",
+  "author": "Matheus",
+  "license": "MIT"
+}
