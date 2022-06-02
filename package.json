@@ -1,7 +1,7 @@
 {
   "name": "nodejs-backend-challenge",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "repository": "git@github.com:Matheusd3v/nodejs-backend-challenge.git",
   "author": "Matheus",
   "license": "MIT",
@@ -9,11 +9,19 @@
     "prepare": "husky install",
     "test": "jest --passWithNoTests --watch",
     "test:staged": "jest --passWithNoTests",
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "start": "node dist/server.js",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.1.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/express": "^4.17.13",
     "@types/jest": "^28.1.0",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.38",
+    "@types/uuid": "^8.3.4",
+    "@types/yup": "^0.29.14",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
     "eslint": "^8.16.0",
@@ -27,8 +35,22 @@
     "jest": "^28.1.0",
     "lint-staged": "^13.0.0",
     "prettier": "^2.6.2",
+    "sqlite3": "^5.0.8",
+    "supertest": "^6.2.3",
     "ts-jest": "^28.0.3",
+    "ts-node": "^10.8.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6",
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
   }
 }
