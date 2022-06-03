@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+
+import { Todo } from "./Todo";
 
 @Entity("users")
 export class User {
@@ -8,6 +10,9 @@ export class User {
     @Column({ type: "varchar", length: 250, unique: true })
     email: string;
 
-    @Column({ select: false })
+    @Column({ type: "text", select: false })
     password: string;
+
+    @OneToMany(() => Todo, (todo) => todo.user)
+    todos: Todo[];
 }
