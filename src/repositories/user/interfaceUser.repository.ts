@@ -1,6 +1,6 @@
 import { DeleteResult, UpdateResult } from "typeorm";
 
-interface IUserInterface {
+interface IUser {
     id?: string;
     email: string;
     password: string;
@@ -12,9 +12,9 @@ interface IUserUpdate {
 }
 
 interface IUserRepo {
-    createUser: (user: IUserInterface) => Promise<IUserInterface>;
+    createUser: (user: IUser) => Promise<IUser>;
     updateUser: (data: IUserUpdate, id: string) => Promise<UpdateResult>;
     deleteUSer: (id: string) => Promise<DeleteResult>;
 }
 
-export { IUserInterface, IUserRepo, IUserUpdate };
+export { IUser, IUserRepo, IUserUpdate };

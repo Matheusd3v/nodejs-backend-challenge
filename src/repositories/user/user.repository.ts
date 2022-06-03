@@ -2,11 +2,7 @@ import { Repository } from "typeorm";
 
 import { AppDataSource } from "../../database/data-source";
 import { User } from "../../entities/User";
-import {
-    IUserInterface,
-    IUserRepo,
-    IUserUpdate,
-} from "./interfaceUserRepository";
+import { IUser, IUserRepo, IUserUpdate } from "./interfaceUser.repository";
 
 class UserRepository implements IUserRepo {
     private ormRepository: Repository<User>;
@@ -15,7 +11,7 @@ class UserRepository implements IUserRepo {
         this.ormRepository = AppDataSource.getRepository(User);
     }
 
-    createUser = async (user: IUserInterface) => {
+    createUser = async (user: IUser) => {
         try {
             return await this.ormRepository.save(user);
         } catch (error) {
