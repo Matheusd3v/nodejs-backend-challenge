@@ -12,27 +12,27 @@ class UserRepository implements IUserRepo {
     }
 
     createUser = async (user: IUser) => {
-        try {
-            return await this.ormRepository.save(user);
-        } catch (error) {
-            throw new Error("Error repository");
-        }
+        const query = await this.ormRepository.save(user);
+
+        return query;
     };
 
     updateUser = async (data: IUserUpdate, id: string) => {
-        try {
-            return await this.ormRepository.update({ id }, data);
-        } catch (error) {
-            throw new Error("Error repository");
-        }
+        const query = await this.ormRepository.update({ id }, data);
+
+        return query;
     };
 
     deleteUSer = async (id: string) => {
-        try {
-            return await this.ormRepository.delete({ id });
-        } catch (error) {
-            throw new Error("Error repository delete");
-        }
+        const query = await this.ormRepository.delete({ id });
+
+        return query;
+    };
+
+    findUser = async (param: { [key: string]: string }) => {
+        const query = await this.ormRepository.findOne({ where: param });
+
+        return query;
     };
 }
 

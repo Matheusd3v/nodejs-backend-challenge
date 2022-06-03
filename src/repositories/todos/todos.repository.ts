@@ -12,40 +12,30 @@ class TodoRepository implements ITodoRepo {
     }
 
     createTodo = async (todo: ITodo) => {
-        try {
-            return await this.ormRepository.save(todo);
-        } catch (error) {
-            throw new Error("Error repository todo");
-        }
+        const query = await this.ormRepository.save(todo);
+        return query;
     };
 
     updateTodo = async (data: ITodoUpdate, id: string) => {
-        try {
-            return await this.ormRepository.update({ id }, data);
-        } catch (error) {
-            throw new Error("Error repository todo");
-        }
+        const query = await this.ormRepository.update({ id }, data);
+        return query;
     };
 
     finishTodo = async (done: boolean, finishedAt: Date, id: string) => {
         const data = { done, finishedAt };
-        try {
-            return await this.ormRepository.update({ id }, data);
-        } catch (error) {
-            throw new Error("Error repository todo");
-        }
+        const query = await this.ormRepository.update({ id }, data);
+
+        return query;
     };
 
     retrieveUserTodos = async (userId: string) => {
-        try {
-            return await this.ormRepository.find({
-                where: {
-                    user: { id: userId },
-                },
-            });
-        } catch (error) {
-            throw new Error("Error repository todo");
-        }
+        const query = await this.ormRepository.find({
+            where: {
+                user: { id: userId },
+            },
+        });
+
+        return query;
     };
 }
 

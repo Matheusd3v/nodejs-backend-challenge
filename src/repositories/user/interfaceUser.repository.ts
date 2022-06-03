@@ -15,6 +15,7 @@ interface IUserRepo {
     createUser: (user: IUser) => Promise<IUser>;
     updateUser: (data: IUserUpdate, id: string) => Promise<UpdateResult>;
     deleteUSer: (id: string) => Promise<DeleteResult>;
+    findUser: (param: { [key: string]: string }) => Promise<IUser>;
 }
 
 export { IUser, IUserRepo, IUserUpdate };
