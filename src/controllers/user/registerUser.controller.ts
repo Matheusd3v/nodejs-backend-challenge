@@ -1,13 +1,17 @@
 import { NextFunction, Request, Response } from "express";
 
-const resgisterUser = (req: Request, res: Response, next: NextFunction) => {
+import { createUserService } from "../../services";
+
+const resgisterUserController = async (req: Request, res: Response) => {
     try {
         const { validated } = req;
 
-        // const user =
+        const user = await createUserService(validated);
 
-        return res.status(201).json();
+        return res.status(201).json(user);
     } catch (error) {
         return res.status(500).json({ message: error });
     }
 };
+
+export { resgisterUserController };
