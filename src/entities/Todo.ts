@@ -10,7 +10,7 @@ import {
 import { User } from "./User";
 
 @Entity("todos")
-export class Todo {
+class Todo {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -35,3 +35,5 @@ export class Todo {
     @ManyToOne(() => User, (user) => user.todos)
     user: User;
 }
+
+export { Todo };

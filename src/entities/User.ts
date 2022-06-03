@@ -3,7 +3,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Todo } from "./Todo";
 
 @Entity("users")
-export class User {
+class User {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -16,3 +16,5 @@ export class User {
     @OneToMany(() => Todo, (todo) => todo.user)
     todos: Todo[];
 }
+
+export { User };

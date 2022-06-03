@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("users_admin")
-export class Admin {
+class Admin {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -14,3 +14,5 @@ export class Admin {
     @Column({ type: "text", select: false, name: "admin_key" })
     adminKey: string;
 }
+
+export { Admin };
