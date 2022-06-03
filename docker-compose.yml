@@ -3,16 +3,18 @@ services:
   database: 
     container_name: mysql_container
     image: mysql:5.7
+    restart: always
     environment:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_TCP_PORT=${DB_PORT}
     expose: 
     - ${DB_PORT}
     ports:
-      - ${DB_PORT}:3306  
-    command: --default-authentication-plugin=mysql_native_password 
+      - ${DB_PORT}:${DB_PORT}
+    command: --default-authentication-plugin=mysql_native_password  --explicit_defaults_for_timestamp
 
   api: 
     container_name: api_container
@@ -28,6 +30,6 @@ services:
     ports: 
     - ${PORT}:${PORT}
     environment:
-      - WAIT_HOSTS=database:3306
+      - WAIT_HOSTS=database:${DB_PORT}
       - WAIT_TIMEOUT=60
     command: bash -c '/wait && yarn dev'
