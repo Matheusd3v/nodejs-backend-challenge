@@ -48,7 +48,8 @@
         "import/no-extraneous-dependencies": [
             "error",
             { "devDependencies": ["**/*.spec.js"] }
-        ]
+        ],
+        "no-return-await": 0
     },
     "settings": {
         "import/resolver": {
