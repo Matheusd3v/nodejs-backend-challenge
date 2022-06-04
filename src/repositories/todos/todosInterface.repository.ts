@@ -8,15 +8,13 @@ interface ITodo {
     updatedAt?: Date;
     fineshedAt?: Date;
     done?: boolean;
+    overdue?: boolean;
 }
 
 interface ITodoUpdate {
-    deadline?: Date;
+    deadline?: Date | string;
     description?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-    finishedAt?: Date;
-    done?: boolean;
+    overdue?: boolean;
 }
 
 interface ITodoRepo {

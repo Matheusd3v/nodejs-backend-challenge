@@ -32,6 +32,9 @@ class Todo {
     @Column({ nullable: true })
     done: boolean;
 
+    @Column({ default: false })
+    overdue: boolean;
+
     @ManyToOne(() => User, (user) => user.todos)
     user: User;
 }

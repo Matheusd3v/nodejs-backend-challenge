@@ -1,8 +1,11 @@
 import { Express, Router } from "express";
 
 import { createTodoController, finishTodoController } from "../../controllers";
-import { validateAuthToken, validateShape } from "../../middlewares";
-import { verifyIfTodoExists } from "../../middlewares/verifyIfTodoExists.middleware";
+import {
+    validateAuthToken,
+    validateShape,
+    verifyIfTodoExists,
+} from "../../middlewares";
 import { createTodoShape } from "../../shapes";
 
 const todoRoute = (app: Express) => {
@@ -14,6 +17,8 @@ const todoRoute = (app: Express) => {
         validateShape(createTodoShape),
         createTodoController
     );
+
+    route.patch("/todo/:todo_id", validateAuthToken, verifyIfTodoExists);
 
     route.patch(
         "/todo/:todo_id/finish",

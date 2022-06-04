@@ -25,6 +25,16 @@ class MyDateLib {
 
         return newDate;
     }
+
+    public async todoIsOverdue(deadline: Date) {
+        const now = new Date();
+
+        if (now > deadline) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
 export { MyDateLib };

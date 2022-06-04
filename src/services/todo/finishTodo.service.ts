@@ -8,9 +8,10 @@ const finishTodoService = async (oldTodo: ITodo) => {
 
     const done = true;
     const finishedAt = new Date();
+    const overdue = false;
 
     const updated = await new TodoRepository().updateTodo(
-        { done, finishedAt },
+        { done, finishedAt, overdue },
         oldTodo.id
     );
 
