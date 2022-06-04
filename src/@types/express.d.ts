@@ -4,6 +4,7 @@ declare global {
     namespace Express {
         interface Request {
             validated: IUser;
+            decoded: { [key: string]: string };
         }
     }
 }
