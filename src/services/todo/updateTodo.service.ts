@@ -8,6 +8,10 @@ import { titleCaseFunction } from "../../utils";
 import { MyDateLib } from "../../utils/myDateLib.util";
 
 const updateTodoService = async (data: ITodoUpdate, oldTodo: ITodo) => {
+    if (oldTodo.done) {
+        throw new BadRequestError("To do already done.");
+    }
+
     if (!data.description && !data.deadline) {
         throw new BadRequestError("No fields were sent.");
     }
@@ -16,9 +20,7 @@ const updateTodoService = async (data: ITodoUpdate, oldTodo: ITodo) => {
 
     const dateLib = new MyDateLib();
 
-    newFormatData.overdue = await dateLib.todoIsOverdue(
-        oldTodo.deadline as Date
-    );
+    newFormatData.overdue = await dateLib.todoIsOverdue(oldTodo.deadline);
 
     if (data.description) {
         const descriptionFormated = await titleCaseFunction(data.description);
@@ -26,13 +28,8 @@ const updateTodoService = async (data: ITodoUpdate, oldTodo: ITodo) => {
     }
 
     if (data.deadline) {
-        const deadlineInDatetime = await dateLib.convertToDateTime(
-            data.deadline as string
-        );
+        const todoIsOverdue = await dateLib.todoIsOverdue(data.deadline);
 
-        const todoIsOverdue = await dateLib.todoIsOverdue(deadlineInDatetime);
-
-        newFormatData.deadline = deadlineInDatetime;
         newFormatData.overdue = todoIsOverdue;
     }
 

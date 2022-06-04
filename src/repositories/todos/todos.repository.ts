@@ -21,13 +21,6 @@ class TodoRepository implements ITodoRepo {
         return query;
     };
 
-    finishTodo = async (done: boolean, finishedAt: Date, id: string) => {
-        const data = { done, finishedAt };
-        const query = await this.ormRepository.update({ id }, data);
-
-        return query;
-    };
-
     findById = async (id: string) => {
         const query = this.ormRepository.findOne({ where: { id } });
 

@@ -1,5 +1,6 @@
 import { TodoRepository } from "../../repositories";
 import { ITodo } from "../../repositories/todos/todosInterface.repository";
+import { MyDateLib } from "../../utils/myDateLib.util";
 
 const finishTodoService = async (oldTodo: ITodo) => {
     if (oldTodo.done) {
@@ -7,7 +8,7 @@ const finishTodoService = async (oldTodo: ITodo) => {
     }
 
     const done = true;
-    const finishedAt = new Date();
+    const finishedAt = await new MyDateLib().currentBrazilianDateString();
     const overdue = false;
 
     const updated = await new TodoRepository().updateTodo(

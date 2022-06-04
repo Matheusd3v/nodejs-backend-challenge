@@ -20,11 +20,16 @@ class Todo {
     @UpdateDateColumn({ name: "updated_at" })
     updatedAt: Date;
 
-    @Column({ name: "finished_at", nullable: true })
-    finishedAt: Date;
+    @Column({
+        type: "varchar",
+        length: 20,
+        name: "finished_at",
+        nullable: true,
+    })
+    finishedAt: string;
 
     @Column()
-    deadline: Date;
+    deadline: string;
 
     @Column({ type: "varchar", length: 550, unique: true })
     description: string;

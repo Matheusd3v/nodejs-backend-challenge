@@ -22,7 +22,7 @@ class CatchError {
                     error: `This item already exists '${especific}'`,
                 });
             }
-
+            console.log(err);
             return res.status(500).json({ message: "unexpected db error." });
         }
 

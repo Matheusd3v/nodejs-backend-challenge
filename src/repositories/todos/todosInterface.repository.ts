@@ -2,29 +2,26 @@ import { UpdateResult } from "typeorm";
 
 interface ITodo {
     id?: string;
-    deadline: Date | string;
+    deadline: string;
     description: string;
     createdAt?: Date;
     updatedAt?: Date;
-    fineshedAt?: Date;
+    fineshedAt?: string;
     done?: boolean;
     overdue?: boolean;
 }
 
 interface ITodoUpdate {
-    deadline?: Date | string;
+    deadline?: string;
     description?: string;
+    finishedAt?: string;
     overdue?: boolean;
+    done?: boolean;
 }
 
 interface ITodoRepo {
     createTodo: (todo: ITodo) => Promise<ITodo>;
     updateTodo: (data: ITodoUpdate, id: string) => Promise<UpdateResult>;
-    finishTodo: (
-        done: boolean,
-        finishedAt: Date,
-        id: string
-    ) => Promise<UpdateResult>;
     retrieveUserTodos: (userId) => Promise<ITodo[]>;
     findById: (id: string) => Promise<ITodo>;
 }

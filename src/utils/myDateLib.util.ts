@@ -10,21 +10,20 @@ class MyDateLib {
         return this.deadlinePatter;
     }
 
-    public async convertToDateTime(dateString: string) {
-        return new Date(dateString);
-    }
+    public async todoIsOverdue(deadline: string) {
+        const brDateString = await this.currentBrazilianDateString();
+        const nowDateTime = new Date(brDateString);
 
-    public async todoIsOverdue(deadline: Date) {
-        const now = await this.currentBrazilianDatetime();
+        const deadlineInDatetime = new Date(deadline);
 
-        if (now > deadline) {
+        if (nowDateTime > deadlineInDatetime) {
             return true;
         }
 
         return false;
     }
 
-    private async currentBrazilianDatetime() {
+    public async currentBrazilianDateString() {
         const brFormatDate = new Date().toLocaleString("pt-BR").split(" ");
 
         const hours: Array<string | number> = brFormatDate[1].split(":");
@@ -33,7 +32,7 @@ class MyDateLib {
 
         brFormatDate[1] = hours.join(":");
 
-        return new Date(brFormatDate.join(" "));
+        return brFormatDate.join(" ");
     }
 }
 
