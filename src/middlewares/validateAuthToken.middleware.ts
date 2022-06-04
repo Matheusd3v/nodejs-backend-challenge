@@ -29,4 +29,4 @@ const validateAuthToken = (
     });
 };
 
-export default validateAuthToken;
+export { validateAuthToken };
