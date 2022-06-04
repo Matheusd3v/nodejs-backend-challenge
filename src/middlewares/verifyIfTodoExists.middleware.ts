@@ -14,7 +14,7 @@ const verifyIfTodoExists = async (
         const todoExists = await new TodoRepository().findById(todo_id);
 
         if (!todoExists) {
-            throw new NotFoundError("This todo not exists.");
+            throw new NotFoundError("To do not found.");
         }
 
         req.todo = todoExists;
