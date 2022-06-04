@@ -1,12 +1,16 @@
 import { Express, Router } from "express";
 
-import { createTodoController, finishTodoController } from "../../controllers";
+import {
+    createTodoController,
+    finishTodoController,
+    updateTodoController,
+} from "../../controllers";
 import {
     validateAuthToken,
     validateShape,
     verifyIfTodoExists,
 } from "../../middlewares";
-import { createTodoShape } from "../../shapes";
+import { createTodoShape, updateTodoShape } from "../../shapes";
 
 const todoRoute = (app: Express) => {
     const route = Router();
@@ -18,7 +22,13 @@ const todoRoute = (app: Express) => {
         createTodoController
     );
 
-    route.patch("/todo/:todo_id", validateAuthToken, verifyIfTodoExists);
+    route.patch(
+        "/todo/:todo_id",
+        validateAuthToken,
+        verifyIfTodoExists,
+        validateShape(updateTodoShape),
+        updateTodoController
+    );
 
     route.patch(
         "/todo/:todo_id/finish",

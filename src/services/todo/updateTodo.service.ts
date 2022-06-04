@@ -21,17 +21,19 @@ const updateTodoService = async (data: ITodoUpdate, oldTodo: ITodo) => {
     );
 
     if (data.description) {
-        newFormatData.description = await titleCaseFunction(data.description);
+        const descriptionFormated = await titleCaseFunction(data.description);
+        newFormatData.description = descriptionFormated;
     }
 
     if (data.deadline) {
-        newFormatData.deadline = await dateLib.convertToDateTime(
+        const deadlineInDatetime = await dateLib.convertToDateTime(
             data.deadline as string
         );
 
-        newFormatData.overdue = await dateLib.todoIsOverdue(
-            data.deadline as Date
-        );
+        const todoIsOverdue = await dateLib.todoIsOverdue(deadlineInDatetime);
+
+        newFormatData.deadline = deadlineInDatetime;
+        newFormatData.overdue = todoIsOverdue;
     }
 
     const update = await new TodoRepository().updateTodo(

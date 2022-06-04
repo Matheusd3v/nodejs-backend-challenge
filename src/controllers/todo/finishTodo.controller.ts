@@ -7,9 +7,9 @@ const finishTodoController = async (req: Request, res: Response) => {
     try {
         const { todo } = req;
 
-        const todoUpdated = await finishTodoService(todo);
+        const message = await finishTodoService(todo);
 
-        return res.status(200).json(todoUpdated);
+        return res.status(200).json(message);
     } catch (error) {
         return new CatchError().catch(error, res);
     }
