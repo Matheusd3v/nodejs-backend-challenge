@@ -6,6 +6,7 @@ declare global {
         interface Request {
             validated: IUser | ITodo;
             decoded: { [key: string]: string };
+            todo: ITodo;
         }
     }
 }

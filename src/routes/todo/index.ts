@@ -14,6 +14,8 @@ const todoRoute = (app: Express) => {
         createTodoController
     );
 
+    route.patch("/todo/:todo_id/finish", validateAuthToken);
+
     app.use("/api/v1", route);
 };
 

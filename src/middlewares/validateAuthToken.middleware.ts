@@ -8,7 +8,7 @@ const validateAuthToken = (
     res: Response,
     next: NextFunction
 ): Response | void => {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization?.split(" ")[1];
 
     if (!token) {
         return res

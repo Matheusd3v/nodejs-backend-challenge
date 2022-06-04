@@ -2,12 +2,13 @@ import { NextFunction, Request, Response } from "express";
 
 import { CatchError, ConflictError, NotFoundError } from "../errors";
 import { UserRepository } from "../repositories";
+import { IUser } from "../repositories/user/interfaceUser.repository";
 
 const verifyUserExists =
     (exists = false) =>
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { email } = req.validated;
+            const { email } = req.validated as IUser;
             const { user_id } = req.params;
 
             const param = user_id ? { id: user_id } : { email };

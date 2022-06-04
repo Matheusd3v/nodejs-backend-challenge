@@ -28,6 +28,12 @@ class TodoRepository implements ITodoRepo {
         return query;
     };
 
+    findById = async (id: string) => {
+        const query = this.ormRepository.findOne({ where: { id } });
+
+        return query;
+    };
+
     retrieveUserTodos = async (userId: string) => {
         const query = await this.ormRepository.find({
             where: {
