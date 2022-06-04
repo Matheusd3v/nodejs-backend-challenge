@@ -37,6 +37,8 @@ const todoRoute = (app: Express) => {
         finishTodoController
     );
 
+    route.get("/todo", validateAuthToken);
+
     app.use("/api/v1", route);
 };
 
