@@ -9,7 +9,7 @@ interface IJWTConfig {
 
 const jwtConfig: IJWTConfig = {
     secretKey: process.env.SECRET_KEY,
-    expiresIn: 60,
+    expiresIn: process.env.EXPIRES_IN,
 };
 
 export { jwtConfig };

@@ -26,7 +26,7 @@ class Todo {
     @Column()
     deadline: Date;
 
-    @Column({ type: "text" })
+    @Column({ type: "varchar", length: 550, unique: true })
     description: string;
 
     @Column({ nullable: true })

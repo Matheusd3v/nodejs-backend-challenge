@@ -1,14 +1,9 @@
 import * as yup from "yup";
 
-import { titleCaseFunction } from "../../utils";
 import { MyDateLib } from "../../utils/myDateLib.util";
 
 const createTodoShape = yup.object().shape({
-    description: yup
-        .string()
-        .transform(
-            async (sentence: string) => await titleCaseFunction(sentence)
-        ),
+    description: yup.string().trim().lowercase().required(),
     deadline: yup
         .string()
         .trim()
@@ -16,10 +11,7 @@ const createTodoShape = yup.object().shape({
             new MyDateLib().deadlinePattern,
             "deadline must have format 'dd/mm/yyyy 24:59:59' "
         )
-        .transform(
-            async (date: string) =>
-                await new MyDateLib().convertToDateTime(date)
-        ),
+        .required(),
 });
 
 export { createTodoShape };

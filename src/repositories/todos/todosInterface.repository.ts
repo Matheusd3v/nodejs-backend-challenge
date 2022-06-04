@@ -2,7 +2,7 @@ import { UpdateResult } from "typeorm";
 
 interface ITodo {
     id?: string;
-    deadline: Date;
+    deadline: Date | string;
     description: string;
     createdAt?: Date;
     updatedAt?: Date;
