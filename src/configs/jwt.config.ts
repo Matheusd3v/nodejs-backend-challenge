@@ -1,13 +1,13 @@
-import { config } from "dotenv";
+import dotenv from "dotenv";
 
-config();
+dotenv.config();
 
-interface IJWTCongif {
+interface IJWTConfig {
     secretKey: string;
     expiresIn: string | number;
 }
 
-const jwtConfig: IJWTCongif = {
+const jwtConfig: IJWTConfig = {
     secretKey: process.env.SECRET_KEY,
     expiresIn: process.env.EXPIRES_IN,
 };

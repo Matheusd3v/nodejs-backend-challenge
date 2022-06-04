@@ -29,8 +29,24 @@ class UserRepository implements IUserRepo {
         return query;
     };
 
-    findUser = async (param: { [key: string]: string }) => {
-        const query = await this.ormRepository.findOne({ where: param });
+    findUser = async (param: { [key: string]: string }, pass = false) => {
+        let query: User;
+
+        if (pass) {
+            const key = Object.keys(param)[0];
+
+            query = await this.ormRepository
+                .createQueryBuilder()
+                .select("user")
+                .addSelect("user.password")
+                .from(User, "user")
+                .where(`user.${key} = :${key}`, param)
+                .getOne();
+
+            return query;
+        }
+
+        query = await this.ormRepository.findOne({ where: param });
 
         return query;
     };

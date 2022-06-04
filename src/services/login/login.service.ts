@@ -6,8 +6,8 @@ import { BadRequestError } from "../../errors";
 import { UserRepository } from "../../repositories";
 
 const loginUserService = async (email: string, password: string) => {
-    const user = await new UserRepository().findUser({ email });
-
+    const user = await new UserRepository().findUser({ email }, true);
+    console.log("==========>", jwtConfig);
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
