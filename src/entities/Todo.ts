@@ -4,12 +4,14 @@ import {
     Entity,
     ManyToOne,
     PrimaryGeneratedColumn,
+    Unique,
     UpdateDateColumn,
 } from "typeorm";
 
 import { User } from "./User";
 
 @Entity("todos")
+@Unique(["user", "description"])
 class Todo {
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -31,7 +33,7 @@ class Todo {
     @Column()
     deadline: string;
 
-    @Column({ type: "varchar", length: 550, unique: true })
+    @Column({ type: "varchar", length: 250 })
     description: string;
 
     @Column({ nullable: true })
