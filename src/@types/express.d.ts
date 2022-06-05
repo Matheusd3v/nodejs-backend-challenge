@@ -1,10 +1,7 @@
-import {
-    ITodo,
-    ITodoUpdate,
-} from "../repositories/todos/todosInterface.repository";
+import { ITodo } from "../repositories/todos/todosInterface.repository";
 import { IUser } from "../repositories/user/interfaceUser.repository";
 
-interface ITodoShapeUpdate {
+interface ITodoShape {
     description: string;
     deadline: string;
 }
@@ -12,7 +9,7 @@ interface ITodoShapeUpdate {
 declare global {
     namespace Express {
         interface Request {
-            validated: IUser | ITodo | ITodoShapeUpdate;
+            validated: IUser | ITodo | ITodoShape;
             decoded: { [key: string]: string };
             todo: ITodo;
         }
