@@ -1,7 +1,7 @@
-import { AdminRepository } from "../../repositories";
+import { TodoRepository } from "../../repositories";
 
 const retrieveAllTodosService = async () => {
-    const todos = await new AdminRepository().retrieveAllTodos();
+    const todos = await new TodoRepository().retrieveAllTodos();
 
     return todos;
 };

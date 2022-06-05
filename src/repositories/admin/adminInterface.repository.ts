@@ -1,26 +1,17 @@
 import { Repository } from "typeorm";
 
 import { AppDataSource } from "../../database/data-source";
-import { Todo } from "../../entities";
-import { IAdminRepo } from "./admin.repository";
+import { Admin } from "../../entities";
+import { IAdmin, IAdminRepo } from "./admin.repository";
 
 class AdminRepository implements IAdminRepo {
-    private ormRepository: Repository<Todo>;
+    private ormRepository: Repository<Admin>;
 
     constructor() {
-        this.ormRepository = AppDataSource.getRepository(Todo);
+        this.ormRepository = AppDataSource.getRepository(Admin);
     }
 
-    retrieveAllTodos = async () => {
-        const query = await this.ormRepository.find({
-            relations: { user: true },
-            select: { user: { email: true } },
-        });
-
-        return query;
-    };
-
-    retrieveLateTodos: () => Promise<Todo[]>;
+    findAdmin: (id: string) => Promise<IAdmin>;
 }
 
 export { AdminRepository };

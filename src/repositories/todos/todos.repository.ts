@@ -40,6 +40,15 @@ class TodoRepository implements ITodoRepo {
 
         return query;
     };
+
+    retrieveAllTodos = async () => {
+        const query = await this.ormRepository.find({
+            relations: { user: true },
+            select: { user: { email: true } },
+        });
+
+        return query;
+    };
 }
 
 export { TodoRepository };

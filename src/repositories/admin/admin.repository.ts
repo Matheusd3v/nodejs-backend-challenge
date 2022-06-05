@@ -1,8 +1,11 @@
-import { Todo } from "../../entities";
-
-interface IAdminRepo {
-    retrieveAllTodos: () => Promise<Todo[]>;
-    retrieveLateTodos: () => Promise<Todo[]>;
+interface IAdmin {
+    id: string;
+    email: string;
+    adminKey: string;
 }
 
-export { IAdminRepo };
+interface IAdminRepo {
+    findAdmin: (id: string) => Promise<IAdmin>;
+}
+
+export { IAdminRepo, IAdmin };
