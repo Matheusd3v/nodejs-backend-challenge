@@ -5,8 +5,6 @@ const adminRoutes = (app: Express) => {
 
     route.post("/login/admin");
 
-    route.post("/todos/admin");
-
     app.use("/api/v1", route);
 };
 
