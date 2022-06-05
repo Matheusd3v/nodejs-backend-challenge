@@ -16,13 +16,10 @@ class CatchError {
 
         if (err instanceof QueryFailedError) {
             if (err.driverError.errno === 1062) {
-                const especific = err.driverError.sqlMessage.split("'")[1];
-
                 return res.status(409).json({
-                    error: `This item already exists '${especific}'`,
+                    error: `This unique item is already saved.`,
                 });
             }
-            console.log(err);
             return res.status(500).json({ message: "unexpected db error." });
         }
 

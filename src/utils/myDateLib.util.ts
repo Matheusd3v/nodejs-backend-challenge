@@ -10,33 +10,34 @@ class MyDateLib {
         return this.deadlinePatter;
     }
 
-    public async todoIsOverdue(deadline: string) {
-        const brDateString = await this.currentBrazilianDateString();
-        const nowDateTime = new Date(brDateString);
+    public async todoIsOverdue(deadline: Date) {
+        const currentDatetime = new Date();
 
-        const deadlineInDatetime = new Date(deadline);
-
-        if (nowDateTime > deadlineInDatetime) {
+        if (currentDatetime > deadline) {
             return true;
         }
 
         return false;
     }
 
-    public async currentBrazilianDateString() {
-        const brFormatDate = new Date().toLocaleString("pt-BR").split(" ");
+    public async brazilianUtcToGlobalUtc(dateString: string) {
+        const [date, time] = dateString.split(" ");
+        const [day, month, year] = date
+            .split("/")
+            .map((value) => Number(value));
 
-        const hours: Array<string | number> = brFormatDate[1].split(":");
+        const hours: Array<string | number> = time.split(":");
+        let newHour = Number(hours[0]) + 3;
 
-        hours[0] = Number(hours[0]) - 3;
-
-        if (hours[0] < 0) {
-            hours[0] = 24 + hours[0];
+        if (newHour > 23) {
+            newHour = 24 - newHour;
         }
 
-        brFormatDate[1] = hours.join(":");
+        hours[0] = newHour;
 
-        return brFormatDate.join(" ");
+        const [hour, minutes, seconds] = hours.map((value) => Number(value));
+
+        return new Date(year, month - 1, day, hour, minutes, seconds);
     }
 }
 

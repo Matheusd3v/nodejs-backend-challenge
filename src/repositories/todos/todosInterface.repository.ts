@@ -2,19 +2,19 @@ import { UpdateResult } from "typeorm";
 
 interface ITodo {
     id?: string;
-    deadline: string;
+    deadline: Date;
     description: string;
     createdAt?: Date;
     updatedAt?: Date;
-    fineshedAt?: string;
+    finishedAt?: Date;
     done?: boolean;
     overdue?: boolean;
 }
 
 interface ITodoUpdate {
-    deadline?: string;
+    deadline?: Date;
     description?: string;
-    finishedAt?: string;
+    finishedAt?: Date;
     overdue?: boolean;
     done?: boolean;
 }

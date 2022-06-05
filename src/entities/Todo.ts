@@ -24,14 +24,14 @@ class Todo {
 
     @Column({
         type: "varchar",
-        length: 20,
+        length: 100,
         name: "finished_at",
         nullable: true,
     })
-    finishedAt: string;
+    finishedAt: Date;
 
     @Column()
-    deadline: string;
+    deadline: Date;
 
     @Column({ type: "varchar", length: 250 })
     description: string;

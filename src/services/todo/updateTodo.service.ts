@@ -7,34 +7,49 @@ import {
 import { titleCaseFunction } from "../../utils";
 import { MyDateLib } from "../../utils/myDateLib.util";
 
-const updateTodoService = async (data: ITodoUpdate, oldTodo: ITodo) => {
+const updateTodoService = async (
+    dataToUpdate: {
+        description?: string;
+        deadline?: string;
+        overdue?: boolean;
+    },
+    oldTodo: ITodo
+) => {
+    const { deadline, description } = dataToUpdate;
+    const dateLib = new MyDateLib();
+    const dataFormated: ITodoUpdate = {};
+
     if (oldTodo.done) {
         throw new BadRequestError("To do already done.");
     }
 
-    if (!data.description && !data.deadline) {
+    if (!description && !deadline) {
         throw new BadRequestError("No fields were sent.");
     }
 
-    const newFormatData = data;
-
-    const dateLib = new MyDateLib();
-
-    newFormatData.overdue = await dateLib.todoIsOverdue(oldTodo.deadline);
-
-    if (data.description) {
-        const descriptionFormated = await titleCaseFunction(data.description);
-        newFormatData.description = descriptionFormated;
+    if (description) {
+        const descriptionFormated = await titleCaseFunction(description);
+        dataFormated.description = descriptionFormated;
     }
 
-    if (data.deadline) {
-        const todoIsOverdue = await dateLib.todoIsOverdue(data.deadline);
+    if (deadline) {
+        const convertDeadlineToDate = await dateLib.brazilianUtcToGlobalUtc(
+            deadline
+        );
 
-        newFormatData.overdue = todoIsOverdue;
+        dataFormated.deadline = convertDeadlineToDate;
+
+        const updatedIsOverdue = await dateLib.todoIsOverdue(
+            dataFormated.deadline
+        );
+
+        dataFormated.overdue = updatedIsOverdue;
+    } else {
+        dataFormated.overdue = await dateLib.todoIsOverdue(oldTodo.deadline);
     }
 
     const update = await new TodoRepository().updateTodo(
-        newFormatData,
+        dataFormated,
         oldTodo.id
     );
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
+import { ITodoShapeUpdate } from "../../@types/express";
 import { CatchError } from "../../errors";
-import { ITodoUpdate } from "../../repositories/todos/todosInterface.repository";
 import { updateTodoService } from "../../services";
 
 const updateTodoController = async (req: Request, res: Response) => {
@@ -9,7 +9,7 @@ const updateTodoController = async (req: Request, res: Response) => {
         const { todo, validated } = req;
 
         const todoUpdated = await updateTodoService(
-            validated as ITodoUpdate,
+            validated as ITodoShapeUpdate,
             todo
         );
 

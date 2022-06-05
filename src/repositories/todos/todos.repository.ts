@@ -35,6 +35,7 @@ class TodoRepository implements ITodoRepo {
             where: {
                 user: { id: userId },
             },
+            order: { createdAt: "ASC" },
         });
 
         return query;
