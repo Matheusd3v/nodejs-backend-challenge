@@ -1,4 +1,5 @@
 import { paginateMiddleware } from "./paginate.middleware";
+import { validateAdminToken } from "./validateAdminToken.middleware";
 import { validateAuthToken } from "./validateAuthToken.middleware";
 import { validateShape } from "./validateShapes.middleware";
 import { verifyIfTodoExists } from "./verifyIfTodoExists.middleware";
@@ -10,4 +11,5 @@ export {
     validateAuthToken,
     verifyIfTodoExists,
     paginateMiddleware,
+    validateAdminToken,
 };

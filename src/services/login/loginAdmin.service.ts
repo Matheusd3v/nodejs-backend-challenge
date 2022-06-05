@@ -19,7 +19,7 @@ const loginAdminService = async (
     }
 
     const token = jwt.sign(
-        { isAdmin: true, adminKey, id: user.id },
+        { isAdmin: true, adminKey, email },
         jwtConfig.secretKey,
         {
             expiresIn: jwtConfig.expiresIn,
