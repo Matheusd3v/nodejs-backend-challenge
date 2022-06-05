@@ -1,8 +1,12 @@
 import { Express, Router } from "express";
 
-import { loginUserController } from "../../controllers";
-import { validateShape, verifyUserExists } from "../../middlewares";
-import { userLoginShape } from "../../shapes";
+import { loginAdminController, loginUserController } from "../../controllers";
+import {
+    validateAuthToken,
+    validateShape,
+    verifyUserExists,
+} from "../../middlewares";
+import { adminLoginShape, userLoginShape } from "../../shapes";
 
 const loginRoute = (app: Express) => {
     const route = Router();
@@ -12,6 +16,12 @@ const loginRoute = (app: Express) => {
         validateShape(userLoginShape),
         verifyUserExists(),
         loginUserController
+    );
+
+    route.post(
+        "/login/admin",
+        validateShape(adminLoginShape),
+        loginAdminController
     );
 
     app.use("/api/v1", route);

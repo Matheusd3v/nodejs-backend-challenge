@@ -1,3 +1,4 @@
+import { loginAdminController } from "./login/loginAdmin.controller";
 import { loginUserController } from "./login/loginUserController";
 import { createTodoController } from "./todo/createtodo.controller";
 import { finishTodoController } from "./todo/finishTodo.controller";
@@ -14,4 +15,5 @@ export {
     updateTodoController,
     retrieveUserTodosController,
     retrieveAllTodosController,
+    loginAdminController,
 };

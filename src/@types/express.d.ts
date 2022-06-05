@@ -1,3 +1,4 @@
+import { IAdmin } from "../repositories/admin/admin.repository";
 import { ITodo } from "../repositories/todos/todosInterface.repository";
 import { IUser } from "../repositories/user/interfaceUser.repository";
 
@@ -14,7 +15,7 @@ interface IPaginated {
 declare global {
     namespace Express {
         interface Request {
-            validated: IUser | ITodo | ITodoShape;
+            validated: IUser | ITodo | ITodoShape | IAdmin;
             decoded: { [key: string]: string };
             todo: ITodo;
             paginated: IPaginated;
