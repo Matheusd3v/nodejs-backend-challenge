@@ -51,7 +51,7 @@ class TodoRepository implements ITodoRepo {
                 description: true,
                 deadline: true,
             },
-            skip: paginated.page,
+            skip: paginated.per_page * (paginated.page - 1),
             take: paginated.per_page,
         });
 
@@ -66,11 +66,12 @@ class TodoRepository implements ITodoRepo {
                 id: true,
                 description: true,
                 deadline: true,
+                overdue: true,
             },
             where: {
                 overdue: true,
             },
-            skip: paginated.page,
+            skip: paginated.per_page * (paginated.page - 1),
             take: paginated.per_page,
         });
 
