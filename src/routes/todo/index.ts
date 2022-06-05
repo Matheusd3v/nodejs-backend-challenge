@@ -3,6 +3,7 @@ import { Express, Router } from "express";
 import {
     createTodoController,
     finishTodoController,
+    retrieveUserTodosController,
     updateTodoController,
 } from "../../controllers";
 import {
@@ -37,7 +38,7 @@ const todoRoute = (app: Express) => {
         finishTodoController
     );
 
-    route.get("/todo", validateAuthToken);
+    route.get("/todo", validateAuthToken, retrieveUserTodosController);
 
     app.use("/api/v1", route);
 };
