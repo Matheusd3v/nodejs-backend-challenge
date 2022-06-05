@@ -20,7 +20,7 @@ interface ITodoUpdate {
 }
 
 interface ITodoRepo {
-    createTodo: (todo: ITodo) => Promise<ITodo>;
+    createTodo: (todo: ITodo, userId: string) => Promise<ITodo>;
     updateTodo: (data: ITodoUpdate, id: string) => Promise<UpdateResult>;
     retrieveUserTodos: (userId) => Promise<ITodo[]>;
     findById: (id: string) => Promise<ITodo>;

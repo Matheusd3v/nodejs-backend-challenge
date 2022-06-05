@@ -11,8 +11,11 @@ class TodoRepository implements ITodoRepo {
         this.ormRepository = AppDataSource.getRepository(Todo);
     }
 
-    createTodo = async (todo: ITodo) => {
-        const query = await this.ormRepository.save(todo);
+    createTodo = async (todo: ITodo, userId: string) => {
+        const query = await this.ormRepository.save({
+            ...todo,
+            user: { id: userId },
+        });
         return query;
     };
 
