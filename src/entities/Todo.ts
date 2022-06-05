@@ -42,7 +42,7 @@ class Todo {
     @Column({ default: false })
     overdue: boolean;
 
-    @ManyToOne(() => User, (user) => user.todos)
+    @ManyToOne(() => User, (user) => user.todos, { onDelete: "CASCADE" })
     user: User;
 }
 

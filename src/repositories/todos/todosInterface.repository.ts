@@ -28,7 +28,7 @@ interface ITodoRepo {
     findById: (id: string) => Promise<ITodo>;
     retrieveAllTodos: (paginated: IPaginated) => Promise<ITodo[]>;
     retrieveAllOverdueTodos: (paginated: IPaginated) => Promise<ITodo[]>;
-    // updateTodos: () => any;
+    updateUserOverdueTodos: (userId: string) => Promise<UpdateResult>;
 }
 
 export { ITodo, ITodoRepo, ITodoUpdate };

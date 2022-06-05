@@ -77,9 +77,23 @@ class TodoRepository implements ITodoRepo {
         return query;
     };
 
-    // updateTodos = async () => {
-    //     const query =
-    // };
+    updateUserOverdueTodos = async (id: string) => {
+        const query = await this.ormRepository
+            .createQueryBuilder()
+            .update()
+            .set({ overdue: true })
+            .where(
+                "user.id = :id and overdue = :condition and deadline < :currentDate",
+                {
+                    id,
+                    condition: false,
+                    currentDate: new Date(),
+                }
+            )
+            .execute();
+
+        return query;
+    };
 }
 
 export { TodoRepository };
