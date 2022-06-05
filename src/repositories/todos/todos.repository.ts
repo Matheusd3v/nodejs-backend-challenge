@@ -45,13 +45,41 @@ class TodoRepository implements ITodoRepo {
     retrieveAllTodos = async (paginated: IPaginated) => {
         const query = await this.ormRepository.find({
             relations: { user: true },
-            select: { user: { email: true } },
+            select: {
+                user: { email: true },
+                id: true,
+                description: true,
+                deadline: true,
+            },
             skip: paginated.page,
             take: paginated.per_page,
         });
 
         return query;
     };
+
+    retrieveAllOverdueTodos = async (paginated: IPaginated) => {
+        const query = await this.ormRepository.find({
+            relations: { user: true },
+            select: {
+                user: { email: true },
+                id: true,
+                description: true,
+                deadline: true,
+            },
+            where: {
+                overdue: true,
+            },
+            skip: paginated.page,
+            take: paginated.per_page,
+        });
+
+        return query;
+    };
+
+    // updateTodos = async () => {
+    //     const query =
+    // };
 }
 
 export { TodoRepository };
