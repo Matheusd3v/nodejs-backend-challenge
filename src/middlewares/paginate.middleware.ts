@@ -21,8 +21,8 @@ const paginateMiddleware = async (
             page = Number(req.query.page);
         }
 
-        if (req.query.per_age) {
-            if (Number(req.query.per_age)) {
+        if (req.query.per_page) {
+            if (Number(req.query.per_page) < 1) {
                 throw new BadRequestError(
                     "The per_page number must be 1 or greater than 1."
                 );

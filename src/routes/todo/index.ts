@@ -8,6 +8,7 @@ import {
     updateTodoController,
 } from "../../controllers";
 import {
+    paginateMiddleware,
     validateAuthToken,
     validateShape,
     verifyIfTodoExists,
@@ -41,7 +42,7 @@ const todoRoute = (app: Express) => {
 
     route.get("/todo", validateAuthToken, retrieveUserTodosController);
 
-    route.get("/todos/admin", retrieveAllTodosController);
+    route.get("/todos/admin", paginateMiddleware, retrieveAllTodosController);
 
     app.use("/api/v1", route);
 };

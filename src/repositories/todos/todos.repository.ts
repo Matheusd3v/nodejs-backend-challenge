@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 
+import { IPaginated } from "../../@types/express";
 import { AppDataSource } from "../../database/data-source";
 import { Todo } from "../../entities";
 import { ITodo, ITodoRepo, ITodoUpdate } from "./todosInterface.repository";
@@ -41,10 +42,12 @@ class TodoRepository implements ITodoRepo {
         return query;
     };
 
-    retrieveAllTodos = async () => {
+    retrieveAllTodos = async (paginated: IPaginated) => {
         const query = await this.ormRepository.find({
             relations: { user: true },
             select: { user: { email: true } },
+            skip: paginated.page,
+            take: paginated.per_page,
         });
 
         return query;

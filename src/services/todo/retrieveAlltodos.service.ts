@@ -1,7 +1,11 @@
+import { IPaginated } from "../../@types/express";
 import { TodoRepository } from "../../repositories";
 
-const retrieveAllTodosService = async () => {
-    const todos = await new TodoRepository().retrieveAllTodos();
+const retrieveAllTodosService = async (
+    paginated: IPaginated,
+    overdue: string
+) => {
+    const todos = await new TodoRepository().retrieveAllTodos(paginated);
 
     return todos;
 };

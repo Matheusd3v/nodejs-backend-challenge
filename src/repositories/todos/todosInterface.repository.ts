@@ -1,5 +1,7 @@
 import { UpdateResult } from "typeorm";
 
+import { IPaginated } from "../../@types/express";
+
 interface ITodo {
     id?: string;
     deadline: Date;
@@ -24,7 +26,7 @@ interface ITodoRepo {
     updateTodo: (data: ITodoUpdate, id: string) => Promise<UpdateResult>;
     retrieveUserTodos: (userId) => Promise<ITodo[]>;
     findById: (id: string) => Promise<ITodo>;
-    retrieveAllTodos: () => Promise<ITodo[]>;
+    retrieveAllTodos: (paginated: IPaginated) => Promise<ITodo[]>;
 }
 
 export { ITodo, ITodoRepo, ITodoUpdate };
