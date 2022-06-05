@@ -14,6 +14,8 @@ services:
     - ${DB_PORT}
     ports:
       - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - db-volume:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password  --explicit_defaults_for_timestamp
 
   api: 
@@ -33,3 +35,6 @@ services:
       - WAIT_HOSTS=database:${DB_PORT}
       - WAIT_TIMEOUT=60
     command: bash -c '/wait && yarn dev'
+
+volumes:
+  db-volume:
