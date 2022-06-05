@@ -11,7 +11,18 @@ class AdminRepository implements IAdminRepo {
         this.ormRepository = AppDataSource.getRepository(Admin);
     }
 
-    findAdmin: (id: string) => Promise<IAdmin>;
+    findAdmin = async (email: string) => {
+        const query = await this.ormRepository
+            .createQueryBuilder()
+            .select("admin")
+            .addSelect("admin.password")
+            .addSelect("admin.adminKey")
+            .from(Admin, "admin")
+            .where("admin.email = :email", { email })
+            .getOne();
+
+        return query;
+    };
 }
 
 export { AdminRepository };
