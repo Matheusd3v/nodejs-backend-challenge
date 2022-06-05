@@ -1,5 +1,4 @@
 import { TodoRepository } from "../../repositories";
-import { ITodo } from "../../repositories/todos/todosInterface.repository";
 import { titleCaseFunction } from "../../utils";
 import { MyDateLib } from "../../utils/myDateLib.util";
 

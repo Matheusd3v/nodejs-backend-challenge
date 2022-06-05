@@ -24,6 +24,7 @@ interface ITodoRepo {
     updateTodo: (data: ITodoUpdate, id: string) => Promise<UpdateResult>;
     retrieveUserTodos: (userId) => Promise<ITodo[]>;
     findById: (id: string) => Promise<ITodo>;
+    retrieveAllTodos: () => Promise<ITodo[]>;
 }
 
 export { ITodo, ITodoRepo, ITodoUpdate };

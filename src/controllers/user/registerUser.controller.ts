@@ -1,12 +1,13 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
+import { IUser } from "../../repositories/user/interfaceUser.repository";
 import { createUserService } from "../../services";
 
 const resgisterUserController = async (req: Request, res: Response) => {
     try {
         const { validated } = req;
 
-        const user = await createUserService(validated);
+        const user = await createUserService(validated as IUser);
 
         return res.status(201).json(user);
     } catch (error) {
