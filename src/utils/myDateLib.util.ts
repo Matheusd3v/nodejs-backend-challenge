@@ -30,6 +30,10 @@ class MyDateLib {
 
         hours[0] = Number(hours[0]) - 3;
 
+        if (hours[0] < 0) {
+            hours[0] = 24 + hours[0];
+        }
+
         brFormatDate[1] = hours.join(":");
 
         return brFormatDate.join(" ");
