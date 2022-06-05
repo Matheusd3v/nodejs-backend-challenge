@@ -18,9 +18,13 @@ const loginAdminService = async (
         throw new BadRequestError("Invalid credentials!.");
     }
 
-    const token = jwt.sign({ isAdmin: true, adminKey }, jwtConfig.secretKey, {
-        expiresIn: jwtConfig.expiresIn,
-    });
+    const token = jwt.sign(
+        { isAdmin: true, adminKey, id: user.id },
+        jwtConfig.secretKey,
+        {
+            expiresIn: jwtConfig.expiresIn,
+        }
+    );
 
     return token;
 };
