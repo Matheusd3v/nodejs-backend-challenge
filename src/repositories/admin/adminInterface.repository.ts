@@ -11,7 +11,15 @@ class AdminRepository implements IAdminRepo {
         this.ormRepository = AppDataSource.getRepository(Todo);
     }
 
-    retrieveAllTodos: () => Promise<Todo[]>;
+    retrieveAllTodos = async () => {
+        const query = await this.ormRepository.find({
+            relations: { user: true },
+            select: { user: { email: true } },
+        });
+
+        return query;
+    };
+
     retrieveLateTodos: () => Promise<Todo[]>;
 }
 

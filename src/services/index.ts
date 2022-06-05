@@ -1,3 +1,4 @@
+import { retrieveAllTodosService } from "./admin/retrieveAlltodos.service";
 import { loginUserService } from "./login/login.service";
 import { createTodoService } from "./todo/createTodo.service";
 import { finishTodoService } from "./todo/finishTodo.service";
@@ -12,4 +13,5 @@ export {
     finishTodoService,
     updateTodoService,
     retrieveUsersTodoService,
+    retrieveAllTodosService,
 };
