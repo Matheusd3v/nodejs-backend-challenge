@@ -7,5 +7,5 @@ temp/
 *.lock
 *.log
 *.sqlite
-
+dist/
 

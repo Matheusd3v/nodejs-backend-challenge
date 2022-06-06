@@ -10,5 +10,7 @@
     "outDir": "./dist",         
     "esModuleInterop": true,
     "strict": false
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/tests"]
 }

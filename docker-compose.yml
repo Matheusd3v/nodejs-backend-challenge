@@ -26,7 +26,7 @@ services:
     depends_on:
       - database
     volumes: 
-      - ./src:/app/src
+      - ./dist:/app/dist
     expose:
     - ${PORT}
     ports: 
@@ -36,7 +36,7 @@ services:
     environment:
       - WAIT_HOSTS=database:${DB_PORT}
       - WAIT_TIMEOUT=60
-    command: bash -c '/wait && yarn dev'
+    command: bash -c '/wait && yarn start'
 
 volumes:
   db-volume:
