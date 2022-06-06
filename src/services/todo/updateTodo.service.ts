@@ -19,7 +19,7 @@ const updateTodoService = async (
     const dateLib = new MyDateLib();
     const dataFormated: ITodoUpdate = {};
 
-    if (oldTodo.done) {
+    if (oldTodo.finishedAt) {
         throw new BadRequestError("To do already done.");
     }
 

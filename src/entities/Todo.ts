@@ -36,9 +36,6 @@ class Todo {
     @Column({ type: "varchar", length: 250 })
     description: string;
 
-    @Column({ nullable: true })
-    done: boolean;
-
     @Column({ default: false })
     overdue: boolean;
 

@@ -1,11 +1,7 @@
 import { Express, Router } from "express";
 
 import { loginAdminController, loginUserController } from "../../controllers";
-import {
-    validateAuthToken,
-    validateShape,
-    verifyUserExists,
-} from "../../middlewares";
+import { validateShape, verifyUserExists } from "../../middlewares";
 import { adminLoginShape, userLoginShape } from "../../shapes";
 
 const loginRoute = (app: Express) => {
