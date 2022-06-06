@@ -7,6 +7,11 @@ import { UserRepository } from "../../repositories";
 
 const loginUserService = async (email: string, password: string) => {
     const user = await new UserRepository().findUser({ email }, true);
+
+    if (!user) {
+        throw new UnauthoziredError("Email and password don't match.");
+    }
+
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {

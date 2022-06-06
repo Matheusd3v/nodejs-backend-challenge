@@ -11,7 +11,7 @@ const userRoutes = (app: Express) => {
     route.post(
         "/user",
         validateShape(createUserShape),
-        verifyUserExists(true),
+        verifyUserExists,
         resgisterUserController
     );
 
