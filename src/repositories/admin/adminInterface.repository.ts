@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 
 import { AppDataSource } from "../../database/data-source";
 import { Admin } from "../../entities";
-import { IAdminRepo } from "./admin.repository";
+import { IAdmin, IAdminRepo } from "./admin.repository";
 
 class AdminRepository implements IAdminRepo {
     private ormRepository: Repository<Admin>;
@@ -20,6 +20,12 @@ class AdminRepository implements IAdminRepo {
             .from(Admin, "admin")
             .where("admin.email = :email", { email })
             .getOne();
+
+        return query;
+    };
+
+    createAdmin = async (admin: IAdmin) => {
+        const query = await this.ormRepository.save(admin);
 
         return query;
     };

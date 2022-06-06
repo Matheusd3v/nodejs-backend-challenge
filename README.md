@@ -12,6 +12,16 @@ authorization: "Bearer TOKEN"
 
 3. As rotas autenticadas estão com  🔒 na tabela de rotas mais abaixo. 
 
+4. Foram feitos testes de unitários para os shapes de validação. Para executar os testes, use o comando abaixo após os containeres ficarem prontos:
+```bash
+ docker exec -it api_container yarn test  
+ ```
+
+ 5. Para acompanhar os logs do container da API, utilize: 
+ ```bash
+ docker logs -f api_container   
+ ```
+
 ## 💡 **Instruções para execução da API:**
 
 ### 1 - Clone esse repositório:
@@ -59,7 +69,7 @@ docker exec -it api_container yarn migration:run
 | POST   | [/api/v1/login/admin](#post---loginadmin)             | Realiza login do admin.                                     |
 | GET    | [/api/v1/todos/admin](#get---todosadmin) 🔒        | Busca todos os TODOS cadastrados.                           |
 
-## User
+## 🚶 User
 
 ### POST - user
 

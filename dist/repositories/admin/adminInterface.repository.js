@@ -16,6 +16,10 @@ class AdminRepository {
                 .getOne();
             return query;
         };
+        this.createAdmin = async (admin) => {
+            const query = await this.ormRepository.save(admin);
+            return query;
+        };
         this.ormRepository = data_source_1.AppDataSource.getRepository(entities_1.Admin);
     }
 }

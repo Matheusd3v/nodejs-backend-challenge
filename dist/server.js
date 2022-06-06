@@ -9,8 +9,7 @@ const data_source_1 = require("./database/data-source");
 (0, dotenv_1.config)();
 const PORT = Number(process.env.PORT);
 app_1.default.listen(PORT, () => {
-    console.log(`Running::${PORT}`);
-    // console.log(AppDataSource.options, "<========");
+    console.log(`Running::`);
     data_source_1.AppDataSource.initialize()
         .then(() => console.log("Connected"))
         .catch((err) => console.log("Don't connect!!", err));

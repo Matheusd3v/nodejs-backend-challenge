@@ -1,5 +1,5 @@
 interface IAdmin {
-    id: string;
+    id?: string;
     email: string;
     password: string;
     adminKey: string;
@@ -7,6 +7,7 @@ interface IAdmin {
 
 interface IAdminRepo {
     findAdmin: (id: string) => Promise<IAdmin>;
+    createAdmin: (admin: IAdmin) => Promise<IAdmin>;
 }
 
 export { IAdminRepo, IAdmin };

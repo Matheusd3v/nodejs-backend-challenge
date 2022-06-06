@@ -11,4 +11,4 @@ RUN chmod +x /wait
 
 COPY . .
 
-ENV NODE_PATH=./src
+ENV NODE_PATH=./dist

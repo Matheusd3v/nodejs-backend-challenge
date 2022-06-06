@@ -30,7 +30,19 @@ const databaseConfig = {
         migrations: ["dist/database/migrations/**/*.*"],
         ssl: false,
     },
+    test: {
+        type: "mysql",
+        host: "database",
+        port: 5535,
+        username: "user_test",
+        password: process.env.DB_PASS,
+        database: "db_test",
+        synchronize: true,
+        logging: false,
+        entities: ["src/entities/**/*.*"],
+        migrations: ["src/database/migrations/**/*.*"],
+        ssl: false,
+    },
 };
-// console.log(process.env.NODE_ENV, "<=======================");
 exports.AppDataSource = new typeorm_1.DataSource(databaseConfig[process.env.NODE_ENV]);
 //# sourceMappingURL=data-source.js.map

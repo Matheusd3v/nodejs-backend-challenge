@@ -10,7 +10,7 @@
     "dev": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules --respawn src/server.ts",
     "start": "node dist/server.js",   
     "prepare": "husky install",
-    "test": "jest --passWithNoTests --watch",
+    "test": "jest --passWithNoTests",
     "test:staged": "jest --passWithNoTests",
     "typeorm-ts": "typeorm-ts-node-commonjs",
     "migration:generate":"typeorm-ts-node-commonjs migration:generate src/database/migrations/migrationId -d src/database/data-source.ts",

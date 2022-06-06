@@ -53,7 +53,7 @@ __decorate([
 ], Todo.prototype, "user", void 0);
 Todo = __decorate([
     (0, typeorm_1.Entity)("todos"),
-    (0, typeorm_1.Unique)(["user", "description"])
+    (0, typeorm_1.Unique)(["user", "description", "deadline"])
 ], Todo);
 exports.Todo = Todo;
 //# sourceMappingURL=Todo.js.map
