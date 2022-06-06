@@ -11,7 +11,7 @@ import {
 import { User } from "./User";
 
 @Entity("todos")
-@Unique(["user", "description"])
+@Unique(["user", "description", "deadline"])
 class Todo {
     @PrimaryGeneratedColumn("uuid")
     id: string;

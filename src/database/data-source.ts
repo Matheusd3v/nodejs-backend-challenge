@@ -11,7 +11,7 @@ const databaseConfig = {
         username: process.env.DB_USER,
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
-        synchronize: false,
+        synchronize: true,
         logging: false,
         entities: ["src/entities/**/*.*"],
         migrations: ["src/database/migrations/**/*.*"],
@@ -31,7 +31,7 @@ const databaseConfig = {
         ssl: false,
     },
 };
-// console.log(process.env.NODE_ENV, "<=======================");
+
 export const AppDataSource = new DataSource(
     databaseConfig[process.env.NODE_ENV]
 );

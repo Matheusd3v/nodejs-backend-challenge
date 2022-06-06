@@ -8,8 +8,8 @@ config();
 const PORT = Number(process.env.PORT);
 
 app.listen(PORT, () => {
-    console.log(`Running::${PORT}`);
-    // console.log(AppDataSource.options, "<========");
+    console.log(`Running::`);
+
     AppDataSource.initialize()
         .then(() => console.log("Connected"))
         .catch((err) => console.log("Don't connect!!", err));
