@@ -3,6 +3,7 @@ import { CatchError } from "./catchError";
 import { ConflictError } from "./ConflictError.errors";
 import { ErrorHandler } from "./errorHandler";
 import { NotFoundError } from "./NotFoundError.errors";
+import { UnauthoziredError } from "./UnauthorizedError.errors";
 
 export {
     ErrorHandler,
@@ -10,4 +11,5 @@ export {
     ConflictError,
     NotFoundError,
     BadRequestError,
+    UnauthoziredError,
 };

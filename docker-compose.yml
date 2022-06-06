@@ -31,6 +31,8 @@ services:
     - ${PORT}
     ports: 
     - ${PORT}:${PORT}
+    env_file:
+      - .env
     environment:
       - WAIT_HOSTS=database:${DB_PORT}
       - WAIT_TIMEOUT=60

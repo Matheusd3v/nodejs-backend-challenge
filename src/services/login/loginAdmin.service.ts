@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import { jwtConfig } from "../../configs";
-import { BadRequestError } from "../../errors";
+import { UnauthoziredError } from "../../errors";
 import { AdminRepository } from "../../repositories";
 
 const loginAdminService = async (
@@ -11,11 +11,16 @@ const loginAdminService = async (
     adminKey: string
 ) => {
     const user = await new AdminRepository().findAdmin(email);
+
+    if (!user) {
+        throw new UnauthoziredError("Invalid admin credentials!");
+    }
+
     const match = await bcrypt.compare(password, user.password);
     const matchAdmin = await bcrypt.compare(adminKey, user.adminKey);
 
     if (!match || !matchAdmin) {
-        throw new BadRequestError("Invalid credentials!.");
+        throw new UnauthoziredError("Invalid admin credentials!");
     }
 
     const token = jwt.sign(

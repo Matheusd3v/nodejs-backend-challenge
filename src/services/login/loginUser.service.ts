@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import { jwtConfig } from "../../configs";
-import { BadRequestError } from "../../errors";
+import { UnauthoziredError } from "../../errors";
 import { UserRepository } from "../../repositories";
 
 const loginUserService = async (email: string, password: string) => {
@@ -10,7 +10,7 @@ const loginUserService = async (email: string, password: string) => {
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
-        throw new BadRequestError("Email and password don't match.");
+        throw new UnauthoziredError("Email and password don't match.");
     }
 
     const token = jwt.sign({ userId: user.id }, jwtConfig.secretKey, {
