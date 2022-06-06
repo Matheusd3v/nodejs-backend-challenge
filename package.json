@@ -11,7 +11,8 @@
     "test:staged": "jest --passWithNoTests",
     "dev": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules --respawn src/server.ts",
     "start": "node dist/server.js",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate":"typeorm-ts-node-commonjs migration:generate src/database/migrations/migrationId -d src/database/data-source.ts" 
   },
   "devDependencies": {
     "@faker-js/faker": "^7.1.0",
