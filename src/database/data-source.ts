@@ -33,9 +33,9 @@ const databaseConfig = {
 
     test: {
         type: "mysql",
-        host: "database",
+        host: "db_for_tests",
         port: 5535,
-        username: "user_test",
+        username: "root",
         password: process.env.DB_PASS,
         database: "db_test",
         synchronize: true,

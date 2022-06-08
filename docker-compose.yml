@@ -19,10 +19,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password  --explicit_defaults_for_timestamp
 
   db_for_tests: 
-    container_name: mysq_tests_container
+    container_name: mysq_tests_l_container
     image: mysql:5.7
     environment:
-      - MYSQL_USER=user_test
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - MYSQL_DATABASE=db_test
@@ -43,17 +42,15 @@ services:
     depends_on:
       - database
     volumes: 
-      - ./dist:/app/dist
+      - ./src:/app/src
     expose:
     - ${PORT}
     ports: 
     - ${PORT}:${PORT}
-    env_file:
-      - .env
     environment:
       - WAIT_HOSTS=database:${DB_PORT}, db_for_tests:5535
       - WAIT_TIMEOUT=120
-    command: bash -c '/wait && yarn start'
+    command: bash -c '/wait && yarn dev'
 
 volumes:
   db-volume:

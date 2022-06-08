@@ -7,7 +7,7 @@ interface ITestUser {
     password: string;
 }
 
-const generateUser = (): ITestUser => {
+const generateUser = async (): Promise<ITestUser> => {
     const firstName = faker.name.firstName().toLowerCase();
     const email = faker.internet.email(firstName).toLowerCase();
     const password = faker.datatype.number({ min: 1000000 }).toString();
@@ -28,13 +28,7 @@ class ConnectionTestJest {
     }
 
     public async clear() {
-        const entities = AppDataSource.entityMetadatas;
-
-        const entityDeletionPromises = entities.map((entity) => async () => {
-            const repository = AppDataSource.getRepository(entity.name);
-            await repository.query(`DELETE FROM ${entity.tableName}`);
-        });
-        await Promise.all(entityDeletionPromises);
+        await AppDataSource.synchronize(true);
     }
 }
 

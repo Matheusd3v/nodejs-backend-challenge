@@ -7,10 +7,10 @@ config();
 
 const PORT = Number(process.env.PORT);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Running::`);
 
-    AppDataSource.initialize()
+    await AppDataSource.initialize()
         .then(() => console.log("Connected"))
         .catch((err) => console.log("Don't connect!!", err));
 });

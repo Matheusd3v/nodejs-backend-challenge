@@ -10,7 +10,6 @@ class CatchError {
     public catch(err: unknown, res: Response) {
         if (err instanceof ErrorHandler) {
             const { status, description } = err;
-
             return res.status(status).json({ error: description });
         }
 

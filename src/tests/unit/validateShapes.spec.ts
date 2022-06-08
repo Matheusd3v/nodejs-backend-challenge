@@ -71,7 +71,7 @@ describe("Unit test for validateShapes middleware", () => {
     });
 
     it("should call next function and add validated property to middleware createUserShape.", async () => {
-        const newUser = generateUser();
+        const newUser = await generateUser();
 
         mockReq.body = newUser;
 
@@ -155,7 +155,7 @@ describe("Unit test for validateShapes middleware", () => {
         );
 
         expect(mockNext).toBeCalled();
-        expect(mockNext).toBeCalledTimes(2);
+        expect(mockNext).toBeCalledTimes(1);
 
         const validated = mockReq.validated as ITodoShape;
 
@@ -205,7 +205,7 @@ describe("Unit test for validateShapes middleware", () => {
         );
 
         expect(mockNext).toBeCalled();
-        expect(mockNext).toBeCalledTimes(3);
+        expect(mockNext).toBeCalledTimes(1);
 
         const validated = mockReq.validated as ITodoShape;
 
@@ -263,7 +263,7 @@ describe("Unit test for validateShapes middleware", () => {
     });
 
     it("should call next function when a correct common user login data has been sended.", async () => {
-        const valid_login = generateUser();
+        const valid_login = await generateUser();
 
         mockReq.body = valid_login;
 
@@ -274,7 +274,7 @@ describe("Unit test for validateShapes middleware", () => {
         );
 
         expect(mockNext).toBeCalled();
-        expect(mockNext).toBeCalledTimes(4);
+        expect(mockNext).toBeCalledTimes(1);
     });
 
     it("should return a error message when a adminKey field are not sent to do admin login. Status 400", async () => {
