@@ -5,10 +5,10 @@ import supertest from "supertest";
 
 import app from "../../../app";
 import { jwtConfig } from "../../../configs";
-import { AdminRepository, UserRepository } from "../../../repositories";
+import { UserRepository } from "../../../repositories";
 import { ConnectionTestJest, generateUser } from "../../index";
 
-describe("integration test to route common user login", () => {
+describe("Integration test to route common user login", () => {
     beforeAll(async () => {
         await new ConnectionTestJest().create();
     });
@@ -39,7 +39,27 @@ describe("integration test to route common user login", () => {
         );
     });
 
-    // it("should return status 200 and admin token as json response", async () => {
+    it("Should return error message and status 400, when body have missing fields", async () => {
+        const { email } = await generateUser();
 
-    // });
+        const response = await supertest(app)
+            .post("/api/v1/login")
+            .send({ email });
+
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual(["password is a required field"]);
+    });
+
+    it("Should return error message and status 400, when body have invalid fields", async () => {
+        const { password } = await generateUser();
+
+        const response = await supertest(app)
+            .post("/api/v1/login")
+            .send({ email: 51, password });
+
+        expect(response.status).toBe(400);
+        expect(response.body).toStrictEqual([
+            "email must be a `string` type, but the final value was: `51`.",
+        ]);
+    });
 });

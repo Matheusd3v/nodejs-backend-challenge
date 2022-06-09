@@ -8,14 +8,13 @@
   "scripts": {
     "build": "tsc",
     "dev": "ts-node-dev --transpile-only --inspect --ignore-watch node_modules --respawn src/server.ts",
-    "start": "node dist/server.js",   
+    "start": "node dist/server.js",
     "prepare": "husky install",
-    "test": "jest --passWithNoTests --clearMocks --runInBand --detectOpenHandles",
+    "test": "jest --passWithNoTests --clearMocks --runInBand",
     "test:staged": "jest --passWithNoTests",
     "typeorm-ts": "typeorm-ts-node-commonjs",
-    "migration:generate":"typeorm-ts-node-commonjs migration:generate src/database/migrations/migrationId -d src/database/data-source.ts",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate src/database/migrations/migrationId -d src/database/data-source.ts",
     "migration:run": "typeorm migration:run -d dist/database/data-source.js"
-
   },
   "devDependencies": {
     "@faker-js/faker": "^7.1.0",
@@ -24,6 +23,7 @@
     "@types/jest": "^28.1.0",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.38",
+    "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
     "@types/yup": "^0.29.14",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
