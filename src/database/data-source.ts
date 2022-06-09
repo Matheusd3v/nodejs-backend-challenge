@@ -38,10 +38,10 @@ const databaseConfig = {
         username: "root",
         password: process.env.DB_PASS,
         database: "db_test",
+        dropSchema: true,
         synchronize: true,
         logging: false,
         entities: ["src/entities/**/*.*"],
-        migrations: ["src/database/migrations/**/*.*"],
         ssl: false,
     },
 };
