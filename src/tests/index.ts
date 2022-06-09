@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 import { AppDataSource } from "../database/data-source";
 
-interface ITestUser {
+export interface ITestUser {
     email: string;
     password: string;
 }
