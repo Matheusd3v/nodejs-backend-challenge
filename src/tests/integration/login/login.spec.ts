@@ -3,10 +3,10 @@ import { hash } from "bcrypt";
 import { verify } from "jsonwebtoken";
 import supertest from "supertest";
 
-import app from "../../app";
-import { jwtConfig } from "../../configs";
-import { AdminRepository, UserRepository } from "../../repositories";
-import { ConnectionTestJest, generateUser } from "../index";
+import app from "../../../app";
+import { jwtConfig } from "../../../configs";
+import { AdminRepository, UserRepository } from "../../../repositories";
+import { ConnectionTestJest, generateUser } from "../../index";
 
 describe("integration test to route common user login", () => {
     beforeAll(async () => {
